@@ -11,8 +11,7 @@ app.use(express.json());
 app.use(cors());
 
 const transporter = nodemailer.createTransport({
-  service: 'gmail',
-  host: "smtp.gmail.com",
+  service: process.env.EMAIL_SERVICE,
   auth: {
     user: process.env.EMAIL,
     pass: process.env.EMAIL_PWD
