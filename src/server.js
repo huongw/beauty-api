@@ -1,6 +1,7 @@
 const dotenv = require("dotenv");
 dotenv.config();
 
+const nodemailer = require("nodemailer");
 const cors = require("cors");
 
 const PORT = process.env.PORT || 5000;
@@ -28,14 +29,14 @@ transporter.verify((error) => {
 
 app.post("/", (req, res) => {
   const {name, email, message} = req.body;
-
+  
   const mailOptions = {
     from: email,
     to: process.env.EMAIL,
-    subject: `New message from ${name}`,
+    subject: `New message from ${name} ${email}`,
     text: message
   };
-
+  
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.log(error);
