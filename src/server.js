@@ -48,6 +48,6 @@ app.post("/", (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
+app.listen(`0.0.0.0`, () => {
   console.log(`Listening on PORT ${PORT}!`)
 });
