@@ -11,33 +11,34 @@ const app = express();
 app.use(express.json());
 app.use(cors());
 
-const transporter = nodemailer.createTransport({
-  service: process.env.EMAIL_SERVICE,
-  host: "smtp.gmail.com",
-  port: 465,
-  secure: true,
-  auth: {
-    type: process.env.TYPE,
-    user: process.env.EMAIL,
-    pass: process.env.EMAIL_PWD,
-    clientId: process.env.CLIENT_ID,
-    clientSecret: process.env.CLIENT_SECRET,
-    refreshToken: process.env.REFRESH_TOKEN,
-    accessToken: process.env.ACCESS_TOKEN
-  }
-});
-
-transporter.verify((error) => {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log("Ready to Send");
-  }
-});
 
 app.post("/", (req, res) => {
   const {name, email, message} = req.body;
-
+  
+  const transporter = nodemailer.createTransport({
+    service: process.env.EMAIL_SERVICE,
+    host: "smtp.gmail.com",
+    port: 465,
+    secure: true,
+    auth: {
+      type: process.env.TYPE,
+      user: process.env.EMAIL,
+      pass: process.env.EMAIL_PWD,
+      clientId: process.env.CLIENT_ID,
+      clientSecret: process.env.CLIENT_SECRET,
+      refreshToken: process.env.REFRESH_TOKEN,
+      accessToken: process.env.ACCESS_TOKEN
+    }
+  });
+  
+  transporter.verify((error) => {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Ready to Send");
+    }
+  });
+  
   const mailOptions = {
     from: email,
     to: process.env.EMAIL,
