@@ -37,6 +37,7 @@ transporter.verify((error) => {
 
 app.post("/", (req, res) => {
   const {name, email, message} = req.body;
+  res.header("Access-Control-Allow-Origin", process.env.BASE_URL);
   
   const mailOptions = {
     from: email,
