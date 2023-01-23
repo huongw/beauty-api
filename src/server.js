@@ -9,7 +9,9 @@ const express = require("express");
 const app = express();
 
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+  origin: process.env.BASE_URL
+}));
 
 const transporter = nodemailer.createTransport({
   service: process.env.EMAIL_SERVICE,
@@ -37,7 +39,6 @@ transporter.verify((error) => {
 
 app.post("/", (req, res) => {
   const {name, email, message} = req.body;
-  res.header("Access-Control-Allow-Origin", process.env.BASE_URL);
   
   const mailOptions = {
     from: email,
