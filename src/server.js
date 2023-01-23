@@ -35,6 +35,25 @@ transporter.verify((error) => {
   }
 });
 
+app.get('/new', (req, res) => {
+  const data = [
+    {
+      name: "jenny",
+      age: 14
+    },
+    {
+      name: "sally",
+      age: 19
+    },
+    {
+      name: "john",
+      age: 16
+    }
+  ]
+
+  res.json(data)
+})
+
 app.post("/", (req, res) => {
   const {name, email, message} = req.body;
   
