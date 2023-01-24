@@ -44,7 +44,6 @@ app.get("/", (req, res) => {
 app.post("/", (req, res) => {
   const {name, email, message} = req.body;
 
-  // res.json({ message: `Thanks for your message, ${name}! We will get back to you shortly.` });
   const mailOptions = {
     from: email, 
     to: process.env.EMAIL,
