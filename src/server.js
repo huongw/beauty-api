@@ -41,7 +41,7 @@ app.post("/", (req, res) => {
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.log(error);
-      res.json({ error });
+      res.json({ message: "Cannot send email right now. Please try again later!" });
     } else {
       console.log(`Email sent: ${info.response}`);
       console.log('Message sent: %s', info.messageId);
