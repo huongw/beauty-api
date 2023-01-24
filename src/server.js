@@ -16,6 +16,8 @@ app.use(cors());
 
 
 app.post("/", (req, res) => {
+  const {name, email, message} = req.body;
+
   const transporter = nodemailer.createTransport({
     service: process.env.EMAIL_SERVICE,
     host: process.env.EMAIL_HOST,
@@ -24,16 +26,6 @@ app.post("/", (req, res) => {
       pass: process.env.EMAIL_PWD
     }
   });
-   
-  transporter.verify((error) => {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log("Ready to Send");
-    }
-  });
-  
-  const {name, email, message} = req.body;
 
   const mailOptions = {
     from: email, 
@@ -53,6 +45,6 @@ app.post("/", (req, res) => {
   });
 });
 
-app.listen(PORT, () => {
+app.listen(PORT, "0.0.0.0", () => {
   console.log(`Listening on PORT ${PORT}!`)
 });
