@@ -15,6 +15,10 @@ app.use(express.json());
 app.use(cors());
 
 
+app.get("/", (req, res) => {
+  res.json({message: "Hello World."});
+})
+
 app.post("/", (req, res) => {
   const {name, email, message} = req.body;
 
@@ -44,6 +48,7 @@ app.post("/", (req, res) => {
     }
   });
 });
+
 
 app.listen(PORT, "0.0.0.0", () => {
   console.log(`Listening on PORT ${PORT}!`)
