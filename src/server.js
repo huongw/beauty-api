@@ -26,7 +26,7 @@ const transporter = nodemailer.createTransport({
     accessToken: process.env.ACCESS_TOKEN
   }
 });
-
+ 
 transporter.verify((error) => {
   if (error) {
     console.log(error);
