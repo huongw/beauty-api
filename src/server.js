@@ -38,7 +38,7 @@ app.use(cors());
 app.post("/", (req, res) => {
   const {name, email, message} = req.body;
 
-  res.json({ message: `Thank you for your message, ${name[0].toUpperCase() + name.slice(1)}! We will get back to you shortly.` });
+  res.json({ message: `Thank you for your message, ${name}! We will get back to you shortly.` });
 
   // const mailOptions = {
   //   from: email, 
