@@ -12,18 +12,10 @@ app.use(express.json());
 app.use(cors());
 
 const transporter = nodemailer.createTransport({
-  service: process.env.EMAIL_SERVICE,
-  host: "smtp.gmail.com",
-  port: 465,
-  secure: true,
+  host: "smtp.mailtrap.io",
   auth: {
-    type: process.env.TYPE,
     user: process.env.EMAIL,
-    pass: process.env.EMAIL_PWD,
-    clientId: process.env.CLIENT_ID,
-    clientSecret: process.env.CLIENT_SECRET,
-    refreshToken: process.env.REFRESH_TOKEN,
-    accessToken: process.env.ACCESS_TOKEN
+    pass: process.env.EMAIL_PWD
   }
 });
  
@@ -48,7 +40,7 @@ app.post("/", (req, res) => {
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.log(error);
-      res.json({ message: 'Error sending email! Please try again later' });
+      res.json({ message: 'Cannot send email. Please try again later.' });
     } else {
       console.log(`Email sent: ${info.response}`);
       res.json({ message: `Thanks for your message, ${name}! We will get back to you shortly.` });
