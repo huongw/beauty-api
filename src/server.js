@@ -19,7 +19,7 @@ app.get("/", (req, res) => {
   res.json({message: "Hello World."});
 })
 
-app.post("/", (req, res) => {
+app.post("/email", (req, res) => {
   const {name, email, message} = req.body;
 
   const transporter = nodemailer.createTransport({
