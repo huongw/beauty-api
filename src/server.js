@@ -14,24 +14,25 @@ app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors());
 
-const transporter = nodemailer.createTransport({
-  service: process.env.EMAIL_SERVICE,
-  host: process.env.EMAIL_HOST,
-  auth: {
-    user: process.env.EMAIL,
-    pass: process.env.EMAIL_PWD
-  }
-});
- 
-transporter.verify((error) => {
-  if (error) {
-    console.log(error);
-  } else {
-    console.log("Ready to Send");
-  }
-});
 
 app.post("/", (req, res) => {
+  const transporter = nodemailer.createTransport({
+    service: process.env.EMAIL_SERVICE,
+    host: process.env.EMAIL_HOST,
+    auth: {
+      user: process.env.EMAIL,
+      pass: process.env.EMAIL_PWD
+    }
+  });
+   
+  transporter.verify((error) => {
+    if (error) {
+      console.log(error);
+    } else {
+      console.log("Ready to Send");
+    }
+  });
+  
   const {name, email, message} = req.body;
 
   const mailOptions = {
