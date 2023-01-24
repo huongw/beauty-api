@@ -12,7 +12,8 @@ app.use(express.json());
 app.use(cors());
 
 const transporter = nodemailer.createTransport({
-  host: "smtp.mailtrap.io",
+  host: 'smtp.ethereal.email',
+  port: 587,
   auth: {
     user: process.env.EMAIL,
     pass: process.env.EMAIL_PWD
@@ -40,9 +41,11 @@ app.post("/", (req, res) => {
   transporter.sendMail(mailOptions, (error, info) => {
     if (error) {
       console.log(error);
-      res.json({ message: 'Cannot send email. Please try again later.' });
+      res.json({ error });
     } else {
       console.log(`Email sent: ${info.response}`);
+      console.log('Message sent: %s', info.messageId);
+      console.log('Preview URL: %s', nodemailer.getTestMessageUrl(info));
       res.json({ message: `Thanks for your message, ${name}! We will get back to you shortly.` });
     }
   });
