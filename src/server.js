@@ -45,6 +45,6 @@ app.post("/email", (req, res) => {
 });
 
 
-app.listen(PORT, "0.0.0.0", () => {
+app.listen(PORT, () => {
   console.log(`Listening on PORT ${PORT}!`)
 });
