@@ -44,7 +44,7 @@ app.post("/email", (req, res) => {
       res.json({ message: "Cannot send email right now. Please try again later!" });
     } else {
       console.log(`Email sent: ${info.response}`);
-      res.json({ message: `Thanks for your message, ${name}! We will get back to you shortly.` });
+      res.json({ message: `Thank you for your message, ${name}! We will get back to you shortly.` });
     }
   });
 });
