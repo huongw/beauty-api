@@ -3,14 +3,11 @@ dotenv.config();
 
 const nodemailer = require("nodemailer");
 const cors = require("cors");
-const bodyParser = require("body-parser");
 
 const PORT = process.env.PORT || 5000;
 const express = require("express");
 const app = express();
 
-// app.use(bodyParser.urlencoded({extended: true}));
-// app.use(bodyParser.json());
 app.use(express.json());
 app.use(cors());
 
